@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>iMessage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="chat-header-content" id="chat-header-content">
+            </div>
+            <button id="settings-btn" class="settings-btn" title="Configurações"><i class="fa-solid fa-bars"></i></i></button>
+        </div>
+    
+        <div class="contacts-container">
+            <div class="contacts-header">
+                <h2>Contatos</h2>
+                <button id="new-group-btn" title="Novo Grupo"><i class="fas fa-users"></i></button>
+            </div>
+            <input type="text" id="search-bar" placeholder="Pesquisar" class="search-bar">
+            <div class="contacts-list" id="contacts-list"></div>
+        </div>
+        
+        <div class="chat-area" id="chat-area">
+            <button id="scroll-to-bottom-btn" class="scroll-to-bottom-btn" title="Rolar para o final"><i class="fa-solid fa-arrow-down"></i></button>
+        </div>
+        
+        <div class="input-area">
+            <button class="file-options-btn"><i class="fa-solid fa-folder"></i></button>
+            <input type="text" id="message-input" placeholder="Digite uma mensagem">
+            <button id="emoji-btn" class="emoji-btn" title="Adicionar Emoji"><i class="fa-regular fa-face-smile"></i></button>            
+            <button onclick="sendMessage()"><i class="fa-regular fa-paper-plane send-button"></i></button>
+        </div>
+
+        <div id="group-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>Criar Novo Grupo</h2>
+                <div class="group-form">
+                    <input id="group-name" type="text" placeholder="Nome do grupo">
+                    <div class="group-photo-upload">
+                        <div class="photo-preview-container">
+                            <img id="group-photo-preview" src="https://via.placeholder.com/40" alt="Prévia">
+                            <label for="group-photo-input" class="photo-upload-btn"><i class="fa-solid fa-camera"></i></label>
+                        </div>
+                        <input id="group-photo-input" type="file" accept="image/*" style="display: none;">
+                    </div>
+                    <div id="selected-members-preview" class="selected-members-preview">
+                        <h4>Membros Selecionados</h4>
+                        <div id="selected-members-photos" class="selected-members-photos"></div>
+                    </div>
+                    <div id="group-participants" class="group-participants"></div>
+                </div>
+                <div class="modal-buttons">
+                    <button id="create-group-btn">Criar</button>
+                    <button id="close-modal-btn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="settings-menu" class="settings-menu">
+        <div class="settings-content">
+            <h2>Configurações do Chat</h2>
+            <div id="contact-info-section" style="display: none; padding: 10px; text-align: center;"></div>
+            <div class="settings-options">
+                <button id="delete-chat-btn" class="settings-option">Excluir Conversa</button>
+                <button id="theme-btn" class="settings-option">Mudar Tema</button>
+                <button id="wallpaper-btn" class="settings-option">Mudar Papel de Parede</button>
+                <button id="add-member-btn" class="settings-option add-member-btn">Adicionar Membro</button>
+            </div>
+            <button id="add-to-group-btn" class="settings-option contact-action-btn" style="display: none;">Adicionar a Grupo</button>
+            <div id="group-members-section" class="group-members-section" style="display: none;">
+                <h3>Integrantes do Grupo</h3>
+                <div id="group-members-list" class="group-members-list"></div>
+            </div>
+        </div>
+        <button id="close-settings-btn" class="close-settings-btn"><i class="fa-solid fa-times"></i></button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
